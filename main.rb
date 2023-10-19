@@ -2,7 +2,12 @@ require 'bundler'
 Bundler.require
 
 $:.unshift File.expand_path("./../lib", __FILE__)
-require 'app/my_project_app'
+require 'app/application'
+require 'app/board'
+require 'app/boardcase'
+require 'app/gameflow'
+require 'app/player'
+require 'app/showboard'
 #require 'views/my_other_file'
 
-MyProjectApp.new.perform
+Application.new.perform

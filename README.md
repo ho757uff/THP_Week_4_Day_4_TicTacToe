@@ -29,4 +29,4 @@ The first player to align 3 of their symbols in a row, column or diagonal wins t
 Contact person(s) in Credits section below.
 
 ## Credit
-Robin DEBESSEL | @ho757uff on Discord# THP_Week_4_Day_4_TicTacToe
+Robin DEBESSEL | @ho757uff on Discord
