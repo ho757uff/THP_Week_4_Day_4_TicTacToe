@@ -25,7 +25,17 @@ The first player to align 3 of their symbols in a row, column or diagonal wins t
 - Players can choose their name
 
 ## Future improvements
-- Players can choose their symbol
+- Round number can be set from the get-go
+- Starting player can be chosen randomly
+- New game starting player can be the previous game's loser
+
+- Players can choose their symbol in a provided slick list
+- Players can choose the board size
+- Players can choose the number of symbols to align to win
+
+- The game can be played against an AI
+
+
 
 ## Troubleshooting
 Contact person(s) in Credits section below.

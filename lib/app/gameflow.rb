@@ -7,38 +7,82 @@ class GameFlow
     @players = [Player.new("X"), Player.new("O")]     # Crée nos 2 joueurs
     @board = Board.new     # Crée le board
     @status = "on going"   # Met le status à "on going"
-
-    @current_player = @players[0]  # Défini un current_player (on commence par le premier joueur par exemple)
+  end
+  
+  # ---
+  
+  def game_round_starts
+    @current_player = @players[0]  # Défini p1 comme current_player
+    round_counter = 0
+    round_counter += 1
+    puts "Starting round n° #{round_counter}..."
+    
+    player_turn_starts
   end
 
   # ---
 
-  def game_turn
-    # Affiche le plateau
-    # Ici, on pourrait ajouter une méthode pour afficher le plateau, par exemple : ShowBoard.new(@board).display
-
+  def player_turn_starts
+    ShowBoard.new(@board).display   # Affiche le plateau
     # Demande au joueur ce qu'il joue
-    # Vous pouvez implémenter une logique qui prend une entrée de l'utilisateur et la joue sur le plateau
-
-    # Vérifie si un joueur a gagné
-    # Si un joueur a gagné, mettez à jour la variable @status et terminez le tour
-
-    # Passe au joueur suivant si la partie n'est pas finie
-    @current_player = (@current_player == @players[0]) ? @players[1] : @players[0]
+    player_turn_ends
   end
 
   # ---
 
-  def game_ends     # Gère la fin de partie
-    @status = "finished"
-    # Autres logiques pour gérer la fin de jeu, comme afficher le vainqueur ou indiquer un match nul
+  def player_turn_ends
+    if @board.victory == true     # Vérifie si un joueur a gagné
+      @status = "finished_with_winner"
+      game_round_ends
+    elsif @board.draw == true
+      @status = "finished_with_draw"
+      game_round_ends
+    else
+      @current_player = (@current_player == @players[0]) ? @players[1] : @players[0]     # Passe au joueur suivant si la partie n'est pas finie
+    end
   end
 
   # ---
 
-  def new_round     # Relance une partie en initialisant un nouveau board mais en gardant les mêmes joueurs.
+  def game_round_ends     # Gère la fin de partie
+    if @status == "finished_with_winner"
+      puts "#{current_player} has won this round !"
+    elsif @status == "finished_with_draw"
+      puts "This is a draw !"
+    end
+    puts "Would you like to play again? (Y/N)"
+    input = ""
 
+    until ["Y", "N"].include?(input)
+      print "> "
+      input = gets.chomp.upcase
+      if input == "Y"
+        new_game_round
+      end
+      if input == "N"
+        puts "Thanks for playing my game!"
+        exit
+      elsif input != "Y"
+        puts "I'm sorry but I did not understand your answer."
+        puts "Would you like to play again? (Y/N)"
+  end
+
+  # ---
+
+  def new_game_round     # Relance une partie en initialisant un nouveau board mais en gardant les mêmes joueurs.
     @board = Board.new
     @status = "on going"
+    game_round_starts
   end
-end
+
+  # ---
+
+  def perform
+    initialize
+    game_round_starts
+    player_turn_starts
+  end
+
+  # ---
+
+end   #Gameflow class ends here
