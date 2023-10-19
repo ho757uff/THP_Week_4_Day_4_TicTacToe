@@ -1,5 +1,5 @@
 class ShowBoard
-  def self.coordinates_mapping
+  def self.coordinates_mapping # Création du hash pour le mapping des coordonnées
     {
       "a1" => 0, "a2" => 1, "a3" => 2,
       "b1" => 3, "b2" => 4, "b3" => 5,

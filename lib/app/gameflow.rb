@@ -56,6 +56,7 @@ class GameFlow
   # ---
 
   def player_turn_ends
+    system("clear") # Clear the terminal
     result = ShowBoard.new.game_status(@board)
     if result == "#{current_player.value} has won !"
       @status = "finished_with_winner"
@@ -88,6 +89,7 @@ class GameFlow
       print "> "
       input = gets.chomp.upcase
       if input == "Y" # Si oui, relance une partie
+        system("clear") # Clear the terminal
         new_game_round
       end
       if input == "N" # Si non, quitte le jeu

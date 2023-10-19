@@ -9,6 +9,7 @@ class Players
   # ---
 
   def self.get_players_names     # Méthode de classe pour obtenir les noms des joueurs et initialiser leurs instances
+    system("clear") # Clear the terminal
     puts "\nPlayer 1, please indicate your name:"
     print "> "
     name_player1 = gets.chomp
