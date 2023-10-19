@@ -4,10 +4,11 @@ class GameFlow
   # ---
 
   def initialize
-    @players = [Player.new("X"), Player.new("O")]     # Crée nos 2 joueurs
-    @board = Board.new     # Crée le board
-    @status = "on going"   # Met le status à "on going"
+    @players = Players.get_players_names
+    @board = Board.new
+    @status = "on going"
   end
+
   
   # ---
   
@@ -31,14 +32,16 @@ class GameFlow
   # ---
 
   def player_turn_ends
-    if @board.victory == true     # Vérifie si un joueur a gagné
+    result = ShowBoard.new.game_status(@board)
+    if result == "#{current_player.marker} a gagné !"
       @status = "finished_with_winner"
       game_round_ends
-    elsif @board.draw == true
+    elsif result == "Match nul !"
       @status = "finished_with_draw"
       game_round_ends
     else
-      @current_player = (@current_player == @players[0]) ? @players[1] : @players[0]     # Passe au joueur suivant si la partie n'est pas finie
+      @current_player = (@current_player == @players[0]) ? @players[1] : @players[0]
+      player_turn_starts
     end
   end
 
@@ -84,5 +87,4 @@ class GameFlow
   end
 
   # ---
-
 end   #Gameflow class ends here

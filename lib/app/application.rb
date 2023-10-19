@@ -6,4 +6,6 @@ class Application
   def perform
     game_starts
   end
-end # Application class end here
+
+  # ---
+end # Application class ends here
