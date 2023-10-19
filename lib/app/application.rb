@@ -1,11 +1,7 @@
 class Application
-  def game_starts
-    GameFlow.new
-  end
-
+  
   def perform
-    game_starts
+    GameFlow.new.perform
   end
-
   # ---
 end # Application class ends here

@@ -21,13 +21,9 @@ class Players
     puts "Welcome #{player1.name} (#{player1.value}) and #{player2.name} (#{player2.value})!"
     puts "Let's play TicTacToe!"
     puts "Good luck & have fun!"
-    
-    return player1, player2
+
+    return [player1, player2]  # This returns the array of players.
   end
 
   # ---
 end   # Players class ends here
-
-# Example of how to use the class:
-#player1, player2 = Players.get_players_names
-
