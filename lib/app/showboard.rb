@@ -1,22 +1,22 @@
-# class ShowBoard
-#   def self.coordinates_mapping
-#     {
-#       "a1" => 0, "a2" => 1, "a3" => 2,
-#       "b1" => 3, "b2" => 4, "b3" => 5,
-#       "c1" => 6, "c2" => 7, "c3" => 8
-#     }
-#   end
+class ShowBoard
+  def self.coordinates_mapping
+    {
+      "a1" => 0, "a2" => 1, "a3" => 2,
+      "b1" => 3, "b2" => 4, "b3" => 5,
+      "c1" => 6, "c2" => 7, "c3" => 8
+    }
+  end
 
   # ---
 
   def show_board(board)
-    puts "-------------"
-    3.times do |i|
-      3.times do |j|
-        print "| #{board.cases[i * 3 + j].value} "
-      end
-      puts "|"
-      puts "-------------"
+    puts "    1   2   3"
+    puts "  +---+---+---+"
+
+    board.cases.each_slice(3).with_index do |row, i|
+      print "#{(i + 65).chr} |"  # Convert index to letters: 0 -> A, 1 -> B, etc.
+      row.each { |cell| print " #{cell.value} |" }
+      puts "\n  +---+---+---+"
     end
   end
 
@@ -34,13 +34,13 @@
       if board.cases[combo[0]].value == board.cases[combo[1]].value &&
           board.cases[combo[1]].value == board.cases[combo[2]].value &&
           board.cases[combo[0]].value != " "
-        return "#{board.cases[combo[0]].value} a gagné !"
+        return "#{board.cases[combo[0]].value} has won !"
       end
     end
 
     # Condition de match nul
     if board.cases.all? { |cell| cell.value != " " }
-      return "Match nul !"
+      return "It's a draw !"
     end
 
     # Si aucune condition n'est remplie
