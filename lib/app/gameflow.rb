@@ -17,6 +17,7 @@ class GameFlow
     @round_counter += 1
     puts "\nStarting round n° #{round_counter}..."
 
+    sleep(0.5)
     player_turn_starts
   end
 
@@ -74,12 +75,13 @@ class GameFlow
     ShowBoard.new.show_board(@board)  # Affiche le plateau final
 
     if @status == "finished_with_winner"
-      puts "#{@current_player.name} has won this round!"
+      puts "\n#{@current_player.name} has won this round!"
     elsif @status == "finished_with_draw"
-      puts "It's a draw!"
+      puts "\nIt's a draw!"
     end
+    sleep(0.5)
 
-    puts "Would you like to play again? (Y/N)" # Demande si le joueur souhaite rejouer
+    puts "\nWould you like to play again? (Y/N)" # Demande si le joueur souhaite rejouer
     input = ""
 
     until ["Y", "N"].include?(input)

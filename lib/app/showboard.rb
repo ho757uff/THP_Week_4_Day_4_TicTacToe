@@ -34,13 +34,13 @@ class ShowBoard
       if board.cases[combo[0]].value == board.cases[combo[1]].value &&
           board.cases[combo[1]].value == board.cases[combo[2]].value &&
           board.cases[combo[0]].value != " "
-        return "#{board.cases[combo[0]].value} a gagné !"
+        return "#{board.cases[combo[0]].value} has won !"
       end
     end
 
     # Condition pour une partie nulle
     if board.cases.all? { |cell| cell.value != " " }
-      return "C'est une égalité !"
+      return "It's a draw !"
     end
 
     # Si aucune condition n'est remplie (cela n'arrivera jamais)
