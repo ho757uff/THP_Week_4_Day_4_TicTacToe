@@ -1,5 +1,4 @@
 class Application
-  
   def perform
     GameFlow.new.perform
   end

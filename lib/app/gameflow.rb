@@ -9,13 +9,13 @@ class GameFlow
     @status = "on going"
     @round_counter = 0
   end
-  
+
   # ---
-  
+
   def game_round_starts
-    @current_player = @players[0]  # Défini p1 comme current_player
+    @current_player = @players[0]  # Définit p1 comme current_player
     @round_counter += 1
-    puts "Starting round n° #{round_counter}..."
+    puts "\nStarting round n° #{round_counter}..."
 
     player_turn_starts
   end
@@ -27,9 +27,15 @@ class GameFlow
 
     valid_input = false
     until valid_input
-      puts "#{@current_player.name}, please select a cell (a1, a2, ... , c3):"
+      puts "\n#{@current_player.name}, please select a cell's coordinates on the grid above or type 'exit' to quit:"
       print "> "
       choice = gets.chomp.downcase
+
+      # Check for the 'exit' command
+      if choice == "exit"
+        puts "Thanks for playing! Goodbye!"
+        exit
+      end
 
       # Accessing the mapping from ShowBoard
       mapping = ShowBoard.coordinates_mapping
@@ -50,10 +56,10 @@ class GameFlow
 
   def player_turn_ends
     result = ShowBoard.new.game_status(@board)
-    if result == "#{current_player.value} a gagné !"
+    if result == "#{current_player.value} has won !"
       @status = "finished_with_winner"
       game_round_ends
-    elsif result == "Match nul !"
+    elsif result == "It's a draw !"
       @status = "finished_with_draw"
       game_round_ends
     else
@@ -65,24 +71,27 @@ class GameFlow
   # ---
 
   def game_round_ends
+    ShowBoard.new.show_board(@board)  # Affiche le plateau final
+
     if @status == "finished_with_winner"
-      puts "#{@current_player} has won this round !"
+      puts "#{@current_player.name} has won this round!"
     elsif @status == "finished_with_draw"
-      puts "This is a draw !"
+      puts "It's a draw!"
     end
-    puts "Would you like to play again? (Y/N)"
+
+    puts "Would you like to play again? (Y/N)" # Demande si le joueur souhaite rejouer
     input = ""
 
     until ["Y", "N"].include?(input)
       print "> "
       input = gets.chomp.upcase
-      if input == "Y"
+      if input == "Y" # Si oui, relance une partie
         new_game_round
       end
-      if input == "N"
+      if input == "N" # Si non, quitte le jeu
         puts "Thanks for playing my game!"
         exit
-      elsif input != "Y"
+      elsif input != "Y" # Si autre chose, demande de réessayer
         puts "I'm sorry but I did not understand your answer."
         puts "Would you like to play again? (Y/N)"
       end
@@ -91,7 +100,7 @@ class GameFlow
 
   # ---
 
-  def new_game_round     # Relance une partie en initialisant un nouveau board mais en gardant les mêmes joueurs.
+  def new_game_round     # Relance une partie en initialisant un nouveau board mais en gardant les mêmes joueurs
     @board = Board.new
     @status = "on going"
     game_round_starts
@@ -100,7 +109,7 @@ class GameFlow
   # ---
 
   def perform
-    game_round_starts
+    game_round_starts # Lance une partie
   end
 
   # ---
