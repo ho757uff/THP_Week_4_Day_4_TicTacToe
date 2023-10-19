@@ -6,7 +6,7 @@ require 'app/application'
 require 'app/board'
 require 'app/boardcase'
 require 'app/gameflow'
-require 'app/player'
+require 'app/players'
 require 'app/showboard'
 #require 'views/my_other_file'
 

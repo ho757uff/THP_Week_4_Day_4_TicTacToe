@@ -23,6 +23,8 @@ The first player to align 3 of their symbols in a row, column or diagonal wins t
 - Auto-replay
 
 - Players can choose their name
+
+## Future improvements
 - Players can choose their symbol
 
 ## Troubleshooting
