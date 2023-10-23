@@ -23,13 +23,13 @@ class ShowBoard
   # ---
 
   def game_status(board)
-    # Conditions pour gagner
-    winning_combinations = [
+    winning_combinations = [    # Listing des conditions pour gagner
       [0, 1, 2], [3, 4, 5], [6, 7, 8], # lignes horizontales
       [0, 3, 6], [1, 4, 7], [2, 5, 8], # lignes verticales
       [0, 4, 8], [2, 4, 6]  # diagonales
     ]
 
+    # Boucle qui itère sur les combinaisons gagnantes possibles
     winning_combinations.each do |combo|
       if board.cases[combo[0]].value == board.cases[combo[1]].value &&
           board.cases[combo[1]].value == board.cases[combo[2]].value &&
